@@ -64,59 +64,20 @@ exports.setStatus = (idOrder, data, done) => {
     })
 }
 
-// exports.resetStatus = () => {
-//     fs.readFile('./data/data.json', 'UTF-8', (eerLectura, content) => {
-//         if(errLectura) {
-//             err = {'error': 'problema leyendo fichero'};
-//             done(err,null);
-//         } else {
-//             let order = JSON.parse(content)
-//             order.estado = 'activo';
-//             fs.writeFile('./data/data.json', JSON.stringify(order), (err) => {
-//                 if (err) return console.log(err.message);
-//                 console.log('File has been reset!');
-//             })
-//         }
-//     })
-// }
 
-/*let orderData = {
-    'idOrden': '12345',
-    'buzon': '25',
-    'letra': 'N',
-    'codigoActual': '4897',
-    'codigoAnterior': '5341',
-    'codigoMaestro': '17634985',
-    'estado': 'activo'
-};
 
-exports.fetch = (idOrder, done) => {
-    if (idOrder && idOrder === orderData.idOrden) {
-        done(null, orderData);
-    } else {
-        err = { 'error': 'Ha habido un problema' };
-        done(err, null);
-    }
-};
-
-exports.setStatus = (idOrder, data, done) => {
-    console.log(idOrder);
-    console.log(data);
-    if (idOrder.id && idOrder.id === orderData.idOrden) {
-        orderData.estado = data.param2;
-        if(orderData.estado === 'cerado'){
-            finalizado = {'exito': 'transacción cerrada'}
-            if(data.param1 === orderData.codigoMaestro){
-                //Llamar a la funcion que resetea la tabla de códigos
-            } else {
-                //Llamar a la funcion que mueve el puntero de la tabla de códigos al siguiente elemento
-            }
+exports.resetStatus = () => {
+    fs.readFile('./data/data.json', 'UTF-8', (errLectura, content) => {
+        if(errLectura) {
+            err = {'error': 'problema leyendo fichero'};
+            done(err,null);
         } else {
-            finalizado = {'incidencia': 'incidencia recibida'}
+            let order = JSON.parse(content)
+            order.estado = 'activo';
+            fs.writeFile('./data/data.json', JSON.stringify(order), (err) => {
+                if (err) return console.log(err.message);
+                console.log('File has been reset!');
+            })
         }
-        done(null, finalizado);
-    } else {
-        err = { 'error': 'Ha habido un problema' };
-        done(err, null);
-    }
-}*/
+    })
+}
